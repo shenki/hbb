@@ -1,0 +1,14 @@
+language: cpp
+os: linux
+dist: bionic
+
+addons:
+  apt:
+    packages:
+      - gcc-powerpc64-linux-gnu
+      - binutils-powerpc64-linux-gnu
+      - device-tree-compiler
+
+script:
+ - CROSS=powerpc64-linux-gnu make
+ - powerpc64-linux-gnu-objdump -D -mpowerpc:common64 -bbinary -EB -d head.bin | head
